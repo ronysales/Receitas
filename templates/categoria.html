@@ -18,7 +18,7 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="categoria-receita">Categoria</label>
-            <input type="text" class="form-control" id="categoria-receita" placeholder="Nome da Categoria">
+            <input type="text" class="form-control" id="categoria-receita" name="categoria-receita" placeholder="Nome da Categoria" Value="{{ categoria.nome_categoria if categoria else '' }}">
         </div>
     </div>
 

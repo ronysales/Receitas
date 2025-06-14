@@ -33,3 +33,17 @@ class CategoriaRepository:
         cursor.execute("SELECT * FROM categorias WHERE nome_categoria = ?", (nome_categoria,))
         row = cursor.fetchone()
         return Categoria(row["nome_categoria"]) if row else None
+
+    def remover_por_nome(self, nome_categoria):
+        print(f"Removendo categoria: {nome_categoria}")
+        query = 'DELETE FROM categorias WHERE nome_categoria = ?'
+        self.conn.execute(query, (nome_categoria,))
+        self.conn.commit()
+   
+    def atualizar(self, nome_antigo, nome_novo):
+        cursor = self.conn.cursor()
+
+        cursor.execute("UPDATE categorias SET nome_categoria = ? WHERE nome_categoria = ?", (nome_novo, nome_antigo))
+        if cursor.rowcount == 0:
+            raise ValueError("Categoria não encontrada para atualização.")
+        self.conn.commit()
